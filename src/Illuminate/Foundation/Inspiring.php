@@ -92,6 +92,15 @@ class Inspiring
             'Life is available only in the present moment. - Thich Nhat Hanh',
             'The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh',
             'Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie',
-        ])->random();
+        ])->map(function ($quote) {
+
+            [$text, $author] = str($quote)->explode('-');
+
+            return sprintf(
+                "\n  <options=bold>“ %s ”</>\n  <fg=gray>— %s</>\n",
+                trim($text),
+                trim($author),
+            );
+        })->random();
     }
 }
